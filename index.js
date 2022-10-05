@@ -111,7 +111,61 @@ function addIntern() {
 }
 
 function save() {
-    
+    const htmlTop = `
+    <!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="./assets/css/style.css" />
+  <title>${team.name}</title>
+</head>
+
+<body class="min-100-vh flex-column bg-light">
+  <header class="p-5 text-center text-white bg-primary">
+    <h1>${team.name}</h1>
+  </header>
+  <main id="main" class="d-flex flex-wrap justify-content-center align-center col-auto p-4 h-100">
+  `;
+
+    let htmlMid = `<div class="card p-2 m-2">
+  <div>${team.manager.name}</div>
+  <div>${team.manager.title}</div>
+  <div>
+  <ul>
+  <li>ID: ${team.manager.id}</li>
+  <li> Email: ${team.manager.email}</li>
+  <li>Office Number: ${team.manager.officeNum}</li>
+  </ul>
+  </div>
+  </div>`;
+
+  for(let employee of team.members) {
+    htmlMid += `<div class="card p-2 m-2">
+    <div>${employee.name}</div>
+    <div>${employee.title}</div>
+    <div>
+    <ul>
+    <li>ID: ${employee.id}</li>
+    <li> Email: ${employee.email}</li>
+    <li>${employee.username ? `Github: <a href="https://github.com/${employee.username}">${employee.username}</a>` : `School: ${employee.school}`}</li>
+    </ul>
+    </div>
+    </div>`;
+  }
+
+    const htmlBottom = `
+</main>
+</body>
+</html>`;
+    const html = htmlTop + htmlMid + htmlBottom;
+    fs.writeFile(`./dist/${team.name.trim().split(' ').join('_')}.html`, html, function(err) {
+        if(err) {
+            throw err;
+        }
+    });
 }
 
 init();
