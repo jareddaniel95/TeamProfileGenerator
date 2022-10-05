@@ -118,7 +118,7 @@ function save() {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="./assets/css/style.css" />
   <title>${team.name}</title>
 </head>
@@ -131,26 +131,26 @@ function save() {
   `;
 
     let htmlMid = `<div class="card p-2 m-2">
-  <div>${team.manager.name}</div>
-  <div>${team.manager.title}</div>
+  <div class="bg-primary text-white fw-bold fs-3 p-3 text-center mb-1">${team.manager.name}</div>
+  <div class="mb-2 fst-italic">${team.manager.title}</div>
   <div>
-  <ul>
-  <li>ID: ${team.manager.id}</li>
-  <li> Email: ${team.manager.email}</li>
-  <li>Office Number: ${team.manager.officeNum}</li>
+  <ul class="list-group">
+  <li class="list-group-item lh-condensed">ID: ${team.manager.id}</li>
+  <li class="list-group-item lh-condensed"> Email: ${team.manager.email}</li>
+  <li class="list-group-item lh-condensed">Office Number: ${team.manager.officeNum}</li>
   </ul>
   </div>
   </div>`;
 
   for(let employee of team.members) {
     htmlMid += `<div class="card p-2 m-2">
-    <div>${employee.name}</div>
-    <div>${employee.title}</div>
+    <div class="bg-primary text-white fw-bold fs-3 p-3 text-center mb-1">${employee.name}</div>
+    <div class="mb-2 fst-italic">${employee.title}</div>
     <div>
-    <ul>
-    <li>ID: ${employee.id}</li>
-    <li> Email: ${employee.email}</li>
-    <li>${employee.username ? `Github: <a href="https://github.com/${employee.username}">${employee.username}</a>` : `School: ${employee.school}`}</li>
+    <ul class="list-group">
+    <li class="list-group-item lh-condensed">ID: ${employee.id}</li>
+    <li class="list-group-item lh-condensed"> Email: ${employee.email}</li>
+    <li class="list-group-item lh-condensed">${employee.username ? `Github: <a href="https://github.com/${employee.username}">${employee.username}</a>` : `School: ${employee.school}`}</li>
     </ul>
     </div>
     </div>`;
