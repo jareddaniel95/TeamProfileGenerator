@@ -13,30 +13,30 @@ let team = {
 function init() {
     inquirer.prompt([
         {
-            message: "Enter the name of your team: ",
+            message: "Enter the name of your team:",
             name: "teamName"
         },
         {
-            message: "Enter your team manager's name: ",
+            message: "Enter your team manager's name:",
             name: "managerName"
         },
         {
-            message: "Enter your team manager's employee ID: ",
+            message: "Enter your team manager's employee ID:",
             name: "managerID",
         },
         {
-            message: "Enter your team manager's email: ",
+            message: "Enter your team manager's email:",
             name: "managerEmail",
         },
         {
-            message: "Enter your team manager's office number: ",
+            message: "Enter your team manager's office number:",
             name: "managerOfficeNum",
         }
     ]).then(answers => {
         team.name = answers.teamName;
         team.manager = new Manager(answers.managerName, answers.managerID, answers.managerEmail, answers.managerOfficeNum);
         addMember();
-    })
+    });
 }
 
 function addMember() {
@@ -63,11 +63,51 @@ function addMember() {
 }
 
 function addEngineer() {
-
+    inquirer.prompt([
+        {
+            message: "Enter the name of the engineer:",
+            name: "name"
+        },
+        {
+            message: "Enter your the engineer's employee ID:",
+            name: "id",
+        },
+        {
+            message: "Enter the engineer's email:",
+            name: "email",
+        },
+        {
+            message: "Enter the engineer's github username:",
+            name: "username",
+        }
+    ]).then(answers => {
+        team.members.push(new Engineer(answers.name, answers.id, answers.email, answers.username));
+        addMember();
+    });
 }
 
 function addIntern() {
-    
+    inquirer.prompt([
+        {
+            message: "Enter the name of the intern:",
+            name: "name"
+        },
+        {
+            message: "Enter your the intern's employee ID:",
+            name: "id",
+        },
+        {
+            message: "Enter the intern's email:",
+            name: "email",
+        },
+        {
+            message: "Enter the intern's school name:",
+            name: "school",
+        }
+    ]).then(answers => {
+        team.members.push(new Intern(answers.name, answers.id, answers.email, answers.school));
+        addMember();
+    });
 }
 
 function save() {
